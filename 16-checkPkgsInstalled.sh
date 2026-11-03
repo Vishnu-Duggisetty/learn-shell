@@ -2,9 +2,9 @@
 
 user_id=$(id -u)
 folder_name="/var/logs/shell-practice"
-file_name=${folder_name}/${0}.log
+file_name="${folder_name}/${0}.log"
 
-if [ $user_id -ne 0 ]; then
+if [ ${user_id} -ne 0 ]; then
     echo "You are not root user, Please run the script as root user"
     exit 1
 fi
@@ -12,11 +12,11 @@ fi
 mkdir -p ${folder_name}
 
 validate() {
-    if [ $1 -ne 0 ]; then 
-        echo "$2 .. FAILED" &>> ${file_name}
+    if [ ${1} -ne 0 ]; then 
+        echo "${2} .. FAILED" &>> ${file_name}
         exit 1
     else 
-        echo "$2 .. SUCCESS" &>> ${file_name}
+        echo "${2} .. SUCCESS" &>> ${file_name}
     fi
 }
 
@@ -24,9 +24,9 @@ for package in "$@"
     do 
         
         dnf list installed ${package}
-        if[ $? -ne 0 ]; then
+        if [ $? -ne 0 ]; then
             echo "Start ${package} pkg install at: $(date +"%F %T")" &>> ${file_name}
-            dnf install ${package}
+            dnf install ${package} -y
             validate $? "${package} installation"
             echo "End ${package} pkg install at: $(date +"%F %T")" &>> ${file_name}
         else
