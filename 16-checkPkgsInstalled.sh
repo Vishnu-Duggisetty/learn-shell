@@ -24,7 +24,7 @@ for package in "$@"
     do 
         
         dnf list installed ${package}
-        if[ $? -ne 0 ]; then 
+        if[ $? -ne 0 ]; then
             echo "Start ${package} pkg install at: $(date +"%F %T")" &>> ${file_name}
             dnf install ${package}
             validate $? "${package} installation"
