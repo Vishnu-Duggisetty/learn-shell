@@ -10,6 +10,7 @@ if [ $user_id -ne 0 ]; then
 fi
 
 mkdir -p ${folder_name}
+set -o pipefail
 
 validate() {
     if [ $1 -ne 0 ]; then
