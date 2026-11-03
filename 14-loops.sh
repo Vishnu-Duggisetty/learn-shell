@@ -17,10 +17,10 @@ validate() {
 
 for package in $@ 
     do
-        echo "Start Install ${package} package:: $(date +%F %T)"
+        echo "Start Install ${package} package:: $(date +"%F %T")"
         dnf install ${package} -y
         validate $? "${package} installation"
-        echo "End Install ${package} package:: $(date +%F %T)"
+        echo "End Install ${package} package:: $(date +"%F %T")"
     done
 
 echo "Script completed successfully"
